@@ -1,11 +1,12 @@
 import React, { Component, useEffect, useState } from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import { HomePage } from "./pages/Home";
-import { Chat } from "./pages/Chat";
-import { SignUp } from "./pages/Signup";
-import { Login } from "./pages/Login";
+import { HomePage } from "./pages/Home/Home";
+import { Chat } from "./pages/Chat/Chat";
+import { SignUp } from "./pages/Forms/Signup";
+import { Login } from "./pages/Forms/Login";
 import { auth } from "./services/firebase";
-import './styles.css';
+import './styles.scss';
+import { Loader } from "./components/Loader/Footer";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
     return (
@@ -56,9 +57,7 @@ const App = () => {
     });
 
     return loading === true ? (
-        <div className="spinner-border text-success" role="status">
-            <span className="sr-only">Loading...</span>
-        </div>
+        <Loader dark/>
     ) : (
         <Router>
             <Switch>

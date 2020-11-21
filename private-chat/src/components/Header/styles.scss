@@ -1,0 +1,46 @@
+@import '../../commons/screens';
+
+.cmp-header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: #1C91DA;
+    padding: 0 2vw;
+
+    a {
+        display: flex;
+        align-items: center;
+    }
+
+    a {
+        color: beige;
+        font-weight: bold;
+        font-size: 20PX;
+        margin-right: 20px;
+    }
+
+    &__nav {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+        &__profile {
+            display: flex;
+            align-content: center;
+            justify-content: space-between;
+
+            a {
+                display: none;
+
+                @include small {
+                    display: flex;
+                }
+            }
+        }
+
+        button {
+            margin: 0;
+        }
+    }
+}

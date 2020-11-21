@@ -1,0 +1,35 @@
+.cmp-form {
+    &__container {
+        margin: 0 2vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &--title, &--paragraph {
+            flex-basis: 100%;
+            text-align: center;
+        }
+
+        &--title {
+            a {
+                margin: 0 10px;
+            }
+        }
+
+        &--input {
+            padding: 5px;
+            border: 0;
+            border-bottom: 1px solid;
+        }
+
+        &--submit {
+            flex-basis: 100%;
+            text-align: center;
+        }
+
+        hr {
+            flex-basis: 100%;
+            margin: 20px 100px;
+        }
+    }
+}

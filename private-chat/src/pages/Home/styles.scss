@@ -1,0 +1,27 @@
+.cmp-home {
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &--title, &--paragraph {
+            flex-basis: 100%;
+            text-align: center;
+        }
+
+        &__links {
+            flex-basis: 100%;
+            text-align: center;
+            justify-content: space-evenly;
+            display: flex;
+            margin-top: 50px;
+
+            &--signin, &--signup {
+                padding: 10px 15px;
+                background-color: lightblue;
+                border-radius: 25px;
+                color: #000;
+            }
+        }
+    }
+}

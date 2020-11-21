@@ -1,0 +1,36 @@
+.cmp-loader {
+    height: 50%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+
+    .spinner {
+        border: 8px solid white;
+        border-right-color: transparent;
+        border-radius: 50%;
+        height: 30px;
+        left: 50%;
+        margin: -23px 0 0 -23px;
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        animation-name: spin;
+        animation-duration: 1000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        &.dark {
+            border: 8px solid black;
+            border-right-color: transparent;
+        }
+    }
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

@@ -1,0 +1,94 @@
+@import '../../commons/screens';
+
+.cmp-chat {
+    margin: 6vw auto 3vw;
+    height: 500px;
+    max-width: 1000px;
+    overflow: auto;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 2vw;
+    background-color: #16202C;
+
+    &--time {
+        flex-basis: 100%;
+        font-style: italic;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    &--item {
+        flex-basis: 100%;
+        display: flex;
+
+        &__content {
+            max-width: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px 5px;
+            color: white;
+            justify-content: flex-start;
+
+            &--paragraph {
+                background-color: #3D5465;
+                padding: 10px 15px;
+                width: auto;
+                border-radius: 25px 25px 25px 0;
+                max-width: 180px;
+                word-wrap: break-word;
+                display: block;
+            }
+
+            @include small {
+                max-width: 500px;
+            }
+        }
+
+        &.current-user {
+            justify-content: flex-end;
+
+            .cmp-chat--time {
+                text-align: right;
+            }
+
+            .cmp-chat--item__content {
+                justify-content: flex-end;
+
+                &--paragraph {
+                    background-color: #1C91DA;
+                    border-radius: 25px 25px 0;
+
+                    @include small {
+                        max-width: 500px;
+                    }
+                }
+            }
+        }
+    }
+
+    &--form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input {
+            flex-basis: 100%;
+            border-radius: 16px;
+            padding: 5px;
+            border: 1px solid;
+
+            @include small {
+                flex-basis: 500px;
+            }
+        }
+
+        button {
+            flex-basis: 100%;
+
+            @include small {
+                flex-basis: unset;
+            }
+        }
+    }
+}
