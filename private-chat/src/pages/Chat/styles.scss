@@ -29,6 +29,19 @@
             color: white;
             justify-content: flex-start;
 
+            &--sender {
+                flex-basis: 50%;
+                color: #1C91DA;
+                font-weight: bold;
+            }
+
+            &--avatar {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                border-radius: 50%;
+            }
+
             &--paragraph {
                 background-color: #3D5465;
                 padding: 10px 15px;
@@ -36,7 +49,8 @@
                 border-radius: 25px 25px 25px 0;
                 max-width: 180px;
                 word-wrap: break-word;
-                display: block;
+                display: flex;
+                flex-wrap: wrap;
             }
 
             @include small {

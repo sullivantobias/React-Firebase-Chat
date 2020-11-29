@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Header from "../../components/Header/Header";
 import { auth, db } from "../../services/firebase";
 
-import './styles.scss';
+import Header from "../../components/Header/Header";
 import { Loader } from "../../components/Loader/Footer";
+
+import './styles.scss';
 
 export class Chat extends Component {
     constructor(props) {
@@ -23,19 +24,25 @@ export class Chat extends Component {
 
     async componentDidMount() {
         this.setState({ readError: null, loadingChats: true });
+
         const chatArea = this.myRef.current;
+
         try {
             db.ref("chats").on("value", snapshot => {
                 let chats = [];
+
                 snapshot.forEach((snap) => {
                     chats.push(snap.val());
                 });
+
                 chats.sort(function (a, b) {
                     return a.timestamp - b.timestamp
-                })
+                });
+
                 this.setState({ chats });
-                chatArea.scrollBy(0, chatArea.scrollHeight);
                 this.setState({ loadingChats: false });
+
+                chatArea.scrollBy(0, chatArea.scrollHeight);
             });
         } catch (error) {
             this.setState({ readError: error.message, loadingChats: false });
@@ -50,13 +57,17 @@ export class Chat extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
+
         this.setState({ writeError: null });
         const chatArea = this.myRef.current;
+
         try {
             await db.ref("chats").push({
                 content: this.state.content,
                 timestamp: Date.now(),
-                uid: this.state.user.uid
+                uid: this.state.user.uid,
+                displayName: this.state.user.displayName,
+                avatar: this.state.user.photoURL
             });
             this.setState({ content: '' });
             chatArea.scrollBy(0, chatArea.scrollHeight);
@@ -84,7 +95,16 @@ export class Chat extends Component {
                         return <div key={ index }
                                     className={ 'cmp-chat--item ' + (this.state.user.uid === chat.uid ? "current-user" : "") }>
                             <div className='cmp-chat--item__content'>
-                                <span className='cmp-chat--item__content--paragraph'>{ chat.content }</span>
+                                <span className='cmp-chat--item__content--paragraph'>
+                                    { this.state.user.uid !== chat.uid && (
+                                        <>
+                                            <img className='cmp-chat--item__content--avatar' alt='avatar'
+                                                 src={ chat.avatar }/>
+                                            <span
+                                                className='cmp-chat--item__content--sender'>{ chat.displayName }</span>
+                                        </>) }
+                                    { chat.content }
+                                </span>
                                 <span className='cmp-chat--time'>{ this.formatTime(chat.timestamp) }</span>
                             </div>
                         </div>

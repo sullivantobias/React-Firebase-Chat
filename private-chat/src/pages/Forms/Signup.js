@@ -6,20 +6,23 @@ export const SignUp = () => {
 
     const [error, setError] = useState(null);
     const [email, setEmail] = useState('');
+    const [displayName, setDisplayName] = useState('');
+    const [avatar, setAvatar] = useState({});
     const [password, setPassword] = useState('');
 
     const handleChange = event => {
         event.target.name === 'email' && setEmail(event.target.value);
         event.target.name === 'password' && setPassword(event.target.value);
+        event.target.name === 'displayName' && setDisplayName(event.target.value);
+        event.target.name === 'avatar' && setAvatar(event.target.files[0]);
     };
 
     const handleSubmit = async event => {
         event.preventDefault();
-
         setError('');
 
         try {
-            await signup(email, password);
+            await signup(email, password, displayName, avatar);
         } catch (error) {
             setError(error.message);
         }
@@ -67,11 +70,26 @@ export const SignUp = () => {
                 />
                 <input
                     className='cmp-form__container--input'
+                    placeholder='Display Name'
+                    name='displayName'
+                    type='text'
+                    onChange={ handleChange }
+                    value={ displayName }
+                />
+                <input
+                    className='cmp-form__container--input'
                     placeholder='Password'
                     name='password'
                     onChange={ handleChange }
                     value={ password }
                     type='password'
+                />
+                <input
+                    className='cmp-form__container--input'
+                    placeholder='Avatar'
+                    name='avatar'
+                    onChange={ handleChange }
+                    type='file'
                 />
                 <>
                     { error ? (

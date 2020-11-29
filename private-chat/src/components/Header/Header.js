@@ -13,8 +13,8 @@ const Header = () => {
                 <div className='cmp-header__nav__profile'>
                     { auth().currentUser
                     && <>
-                        <Link className='' to='/chat'>{ auth().currentUser.email } </Link>
-                        <button className='' onClick={ () => logout() }>Logout</button>
+                        <img className='cmp-header__nav__profile--avatar' alt='profilePicture' src={ auth().currentUser.photoURL }/>
+                        <button onClick={ () => logout() }>Logout</button>
                     </>
                     }
                 </div>
