@@ -5,8 +5,9 @@ import { Chat } from "./pages/Chat/Chat";
 import { SignUp } from "./pages/Forms/Signup";
 import { Login } from "./pages/Forms/Login";
 import { auth } from "./services/firebase";
-import './styles.scss';
 import { Loader } from "./components/Loader/Footer";
+
+import './styles.scss';
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
     return (
